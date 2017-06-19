@@ -6295,6 +6295,7 @@ def test_versioning_obj_plain_null_version_overwrite():
 
     eq(key.get_contents_as_string(), content2)
 
+    key.version_id = None
     version_id = None
     for k in bucket.list_versions():
         version_id = k.version_id
@@ -6339,8 +6340,6 @@ def test_versioning_obj_plain_null_version_overwrite_suspended():
     key.set_contents_from_string(content2)
 
     eq(key.get_contents_as_string(), content2)
-    # get_contents_to_string() will set key.version_id, clear it
-    key.version_id = None
 
     version_id = None
     for k in bucket.list_versions():
